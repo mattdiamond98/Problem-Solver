@@ -18,8 +18,11 @@ public class Main {
 		
 		List<ActionChain> paths = new LinkedList<>();
 		paths.add(chain);
+		
+		long startTime = System.currentTimeMillis();
+		
 		for (int i = 0; i < 10; i++) {
-			long startTime = System.currentTimeMillis();
+			
 
 			List<ActionChain> currentPaths = new LinkedList<>(paths);
 			paths.clear();
@@ -39,35 +42,32 @@ public class Main {
 			}
 			long endTime = System.currentTimeMillis();
 
-//			for (ActionChain path : paths) {
-//				System.out.println(path);
-//			}
 			System.out.println("Current Paths: " + paths.size());
 			System.out.println("Time Taken: " + (endTime - startTime) + "ms");
 			System.out.println();
 		}
 		
-//		List<ActionChain> uniqueEnds = new LinkedList<>();
-//		
-//		for (ActionChain end : chain.getAllEndScenarios()) {
-//			boolean unique = true;
-//			for (ActionChain u : uniqueEnds) {
-//				if (end.last().equals(u.last())) {
-//					unique = false;
-//				}
-//			}
-//			if (unique)
-//				uniqueEnds.add(end);
-//		}
-//		long endTime = System.currentTimeMillis();
-//		
-//		System.out.println(uniqueEnds.size());
-//		System.out.println();
-//		for (ActionChain end : uniqueEnds) {
-//			System.out.println(end);
-//		}
-//		System.out.println();
-//		System.out.println("Total time: " + (endTime - startTime) + "ms");
+		List<ActionChain> uniqueEnds = new LinkedList<>();
+		
+		for (ActionChain end : chain.getAllEndScenarios()) {
+			boolean unique = true;
+			for (ActionChain u : uniqueEnds) {
+				if (end.last().equals(u.last())) {
+					unique = false;
+				}
+			}
+			if (unique)
+				uniqueEnds.add(end);
+		}
+		long endTime = System.currentTimeMillis();
+		
+		System.out.println(uniqueEnds.size());
+		System.out.println();
+		for (ActionChain end : uniqueEnds) {
+			System.out.println(end);
+		}
+		System.out.println();
+		System.out.println("Total time: " + (endTime - startTime) + "ms");
 		
 	}
 	
